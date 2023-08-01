@@ -1,24 +1,46 @@
-name: Publish Docker Image to Docker Hub
+name: CI/CD Python Django with Docker
 
 on:
   push:
-    branches: ['master']
+    branches:
+      - main  # ou a branch que você quer acompanhar
 
 jobs:
   build:
+    name: Build and Push Docker Image
     runs-on: ubuntu-latest
-
+    
     steps:
-      - uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10  # Use a versão de Python desejada
 
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/n3e-porta
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  # Substitua pelo nome do arquivo de requisitos
 
-      - name: Docker Push
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/n3e-porta
+    - name: Run Django Migrations
+      run: |
+        python manage.py migrate
+
+    - name: Collect Static Files
+      run: |
+        python manage.py collectstatic --noinput
+
+    - name: Build and Tag Docker Image
+      run: |
+        docker build -t thunderstorm710/n3e-porta:latest .
+        docker tag thunderstorm710/n3e-porta:latest thunderstorm710/n3e-porta:latest
+
+    - name: Login to Docker Hub
+      run: |
+        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+
+    - name: Push Docker Image
+      run: |
+        docker push thunderstorm710/n3e-porta:latest
