@@ -26,11 +26,11 @@ jobs:
 
     - name: Run Django Migrations
       run: |
-        python manage.py migrate
+        python registration/manage.py migrate
 
     - name: Collect Static Files
       run: |
-        python manage.py collectstatic --noinput
+        python registration/manage.py collectstatic --noinput
 
     - name: Build and Tag Docker Image
       run: |
