@@ -28,10 +28,6 @@ jobs:
       run: |
         python registration/manage.py migrate
 
-    - name: Collect Static Files
-      run: |
-        python registration/manage.py collectstatic --noinput
-
     - name: Build and Tag Docker Image
       run: |
         docker build -t thunderstorm710/n3e-porta:latest .
