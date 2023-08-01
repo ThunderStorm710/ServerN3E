@@ -30,6 +30,7 @@ jobs:
 
     - name: Build and Tag Docker Image
       run: |
+        cd registration
         docker build -t thunderstorm710/n3e-porta:latest .
         docker tag thunderstorm710/n3e-porta:latest thunderstorm710/n3e-porta:latest
 
