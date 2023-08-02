@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+import subprocess
+
 
 # Create your views here.
 
@@ -55,4 +57,17 @@ def LoginPage(request):
 def LogoutPage(request):
     logout(request)
     return redirect('signup')
+
+@login_required(login_url='login')
+def OpenDoor(request):
+    # Comando para executar o arquivo Python
+    # Certifique-se de fornecer o caminho completo do arquivo se não estiver na mesma pasta da view.
+    comando = "python exemplo.py" 
+
+    # Executa o comando usando o módulo subprocess
+    resultado = subprocess.getoutput(comando)
+    print(resultado)
+
+    # Retorne o resultado como uma resposta HTTP
+    return render(request, 'home.html')
 
