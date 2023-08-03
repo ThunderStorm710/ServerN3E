@@ -7,6 +7,14 @@ import subprocess
 
 # Create your views here.
 
+def LandingPage(request):
+    print(request.user.is_authenticated, "----")
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        return render(request, 'landing.html')
+        
+
 @login_required(login_url='login')
 def HomePage(request):
     return render(request, 'home.html')

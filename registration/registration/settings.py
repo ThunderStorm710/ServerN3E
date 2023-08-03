@@ -30,6 +30,11 @@ ALLOWED_HOSTS = []
 SITE_ID = 1
 # Application definition
 
+AUTHENTICATION_BACKENDS = {
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,27 +45,40 @@ INSTALLED_APPS = [
     'app1',
     'fontawesomefree',
     'django.contrib.sites',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
 
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
-        "SCOPE": [
-            "profile",
-            "email"
+        'SCOPE': [
+            'profile',
+            'email',
         ],
-        "AUTH_PARAMS": {"access_type":"online"},
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    },
+        "github": {
         "APP": {
-            'client_id': "651102929864-104f93gngthsmut54r18j4a2inq4bunb.apps.googleusercontent.com",
-            'secret': "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",
+            'client_id': "78ddcaf86d379b2fd8da",
+            'secret': "2c8a486c6c348a268c07cbac4cfd9f05adea9e4b",
             'key': ''
         },
     }
 }
+
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "signup"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,15 +159,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = 'imagens/'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AUTHENTICATION_BACKENDS = {
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-}
-
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/"
