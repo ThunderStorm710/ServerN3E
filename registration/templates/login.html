@@ -136,8 +136,10 @@ button{
 </head>
 <body>
     <div class="background">
+        <!--        
         <div class="shape"></div>
-        <div class="shape"></div>
+        <div class="shape"></div> 
+        -->
     </div>
     <form method="post">
         <h3>Login Here</h3>
@@ -155,6 +157,14 @@ button{
           <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div> -->
         <a href="{% url 'signup' %}" >Create a account</a>
+
+        {% load socialaccount %}
+        <h2>Google Login</h2>
+        <a  href="{% provider_login_url 'google' %}?next=/">Login with Google</a>
+        
+        {% if user.is_authenticated %}
+        <p>You are signed in as {{user.email}}</p>
+        {% endif %}
     </form>
 </body>
 </html>

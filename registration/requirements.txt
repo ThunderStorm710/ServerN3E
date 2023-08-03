@@ -6,3 +6,4 @@ djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
 fontawesomefree==6.4.0
 sqlparse==0.4.3
+django-allauth==0.54.0

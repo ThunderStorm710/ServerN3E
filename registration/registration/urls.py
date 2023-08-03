@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app1 import views
 
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     path('about/', views.AboutPage, name='about'),
     path('logout/', views.LogoutPage, name='logout'),
     path('door/', views.OpenDoor, name='openDoor'),
+    path('accounts/', include("allauth.urls")),
 ]
