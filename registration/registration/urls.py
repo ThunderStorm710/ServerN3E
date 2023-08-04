@@ -3,6 +3,7 @@ from django.urls import path, include
 from app1 import views
 from django.views.generic import TemplateView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', views.SignupPage, name='signup'),
