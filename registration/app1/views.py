@@ -100,3 +100,20 @@ def OpenDoor(request):
 
     # Retorne o resultado como uma resposta HTTP
     return render(request, 'home.html')
+
+
+@login_required(login_url='login')
+def Settings(request):
+    return render(request, 'settings.html')
+
+@login_required(login_url='login')
+def Profile(request):
+    return render(request, 'home.html')
+
+def Eletronica(request):
+    return render(request, 'eletronica.html')
+
+def Robotics(request):
+    return render(request, 'robotics.html')
+
+

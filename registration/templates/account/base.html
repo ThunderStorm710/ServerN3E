@@ -1,34 +1,287 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{% block head_title %}{% endblock %}</title>
+    
+    <link rel="icon" href="https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2020/09/cropped-icone-2.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,600;1,400;1,900&display=swap");
+
+      :root {
+          --primary-color: #02b4cc;
+      }
+
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      html {
+          scroll-behavior: smooth;
+      }
       .form-group {
         margin-top: 10px;
       }
-        body {
-            font-family: "Nunito", sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.6rem;
-            -webkit-font-smoothing: antialiased;
-            background: #000;
-        }
-    </style>
-    {% block extra_head %}
-    {% endblock %}
+
+      body {
+          font-family: "Nunito", sans-serif;
+          font-size: 1.1rem;
+          line-height: 1.6rem;
+          -webkit-font-smoothing: antialiased;
+          background: #000;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+          color: #fff;
+          line-height: 2rem;
+      }
+
+      ul {
+          list-style: none;
+      }
+
+      a {
+          color: #fff;
+          text-decoration: none;
+      }
+
+      img {
+          width: 100%;
+      }
+
+      .showcase {
+          width: 100%;
+          height: 100vh;
+          position: relative;
+          background: url(https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2020/10/WhatsApp-Image-2020-10-05-at-10.26.02-1-1024x575.jpeg) no-repeat center center/cover;
+      }
+
+      .showcase::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          background: rgba(0, 0, 0, 0.5);
+      }
+
+      .showcase-top {
+          position: relative;
+          height: 90px;
+          z-index: 2;
+      }
+
+      .showcase-top .logo {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+      }
+
+      .showcase-top a {
+          position: absolute;
+          top: 40%;
+          right: 0;
+          transform: translate(-50%, -50%);
+      }
+
+      .showcase-content {
+          position: relative;
+          margin: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          margin-top: 9rem;
+          z-index: 2;
+      }
+
+      .showcase-content h1 {
+          font-weight: 700;
+          font-size: 5.2rem;
+          line-height: 1.1rem;
+          margin: 0 0 2rem;
+      }
+
+      .showcase-content p {
+          text-transform: uppercase;
+          color: #fff;
+          font-weight: 400;
+          font-size: 1.5rem;
+          line-height: 1.25;
+          margin: 1rem 2rem;
+      }
+
+      .showcase-content a {
+          margin-top: 2rem;
+      }
+
+      .img-container {
+          position: relative;
+          display: inline-block;
+      }
+
+      .img-container .text-container {
+          opacity: 0;
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background: rgb(0, 0, 0, 0.6);
+          transition: all 0.3s ease-in-out;
+      }
+
+      .img-container .text-container:hover {
+          opacity: 1;
+      }
+
+      .img-container .text-container p {
+          font-size: 3rem;
+          line-height: 3rem;
+      }
+
+      /* Footer */
+
+      .footer {
+          max-width: 75%;
+          margin: 2rem auto;
+          overflow: auto;
+      }
+
+      .footer,
+      .footer a {
+          color: #999;
+          font-size: 0.9rem;
+      }
+
+      .footer p {
+          margin-bottom: 1.5rem;
+      }
+
+      .footer .footer-cols {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          grid-gap: 2rem;
+      }
+
+      .footer li {
+          line-height: 1.9;
+      }
+
+      /* Utilities */
+
+      .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .btn {
+          display: inline-block;
+          background: var(--primary-color);
+          color: #fff;
+          padding: 0.4rem 1.3rem;
+          font-size: 1rem;
+          text-align: center;
+          border: 0;
+          cursor: pointer;
+          margin-right: 0.5rem;
+          outline: none;
+          box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+          border-radius: 2px;
+      }
+
+      .btn:hover {
+          opacity: 0.9;
+      }
+
+      .btn-rounded {
+          border-radius: 5px;
+      }
+
+      .btn-xl {
+          font-size: 1.8rem;
+          padding: 1rem 2.1rem;
+          text-transform: uppercase;
+      }
+
+      .btn-lg {
+          font-size: 1rem;
+          padding: 0.8rem 1.3rem;
+          text-transform: uppercase;
+      }
+
+      .btn-icon {
+          margin-left: 1rem;
+      }
+  </style>
+
   </head>
   <body>
-    {% block body %}
-
-    {% if messages %}
-      <div class="p-2">
-        {% for message in messages %}
-          <div class="text-center border-bottom">{{message}}</div>
-        {% endfor %}
+    <nav class="navbar navbar-expand-lg " style="background-color:black;">
+      <a class="navbar-brand" href="#" style="color:#02b4cc;">N3E</a>   
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        
+        <div class="form-inline my-2 my-lg-0" style="margin-right: 60px;">
+          <ul class="nav-item form-inline my-2 my-lg-0">
+            <li class="nav-item">
+            <a class="nav-link" href="/about" style="color:#02b4cc;">Quem somos</a>
+          </li> 
+          <li class="nav-item ">
+            <a class="nav-link" href="/eletronica" style="color:#02b4cc;">Eng. Eletrónica</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/robotics" style="color:#02b4cc;">N3E Robotics</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/contacts" style="color:#02b4cc;">Contactos</a>
+          </li>
+          </ul>
+          {% if user.is_authenticated %}  
+        <li class="nav-item dropdown form-inline">
+          <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#02b4cc">Conta</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:#02b4cc;">
+            <a class="dropdown-header" style="color:white;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';">Olá {{ user.username }}!</a>
+            <a class="dropdown-item" href="/profile" style="color:white;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';">Perfil</a>
+            <a class="dropdown-item" href="/door" style="color:white;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';">Acesso à porta</a>
+            <a class="dropdown-item" href="/settings" style="color:white;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';">Definições</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/logout" style="color:white;" onmouseover="this.style.color='black';" onmouseout="this.style.color='white';">Logout</a>
+          </div>
+        </li>
       </div>
-    {% endif %}
+      {% else %}
+      <li class="nav-item ">
+        <a href="/login" class="btn btn-rounded">Login</a>
+      </li>
+      {% endif %}
+      </div>
+    </nav>
 
+  <!--
     <div class="p-3 mb-3 bg-dark">
       <div class="container d-flex justify-content-between">
           {% if user.is_authenticated %}
@@ -41,12 +294,23 @@
           {% endif %}
       </div>
     </div>
+  -->
     {% block content %}
-    {% endblock %}
     {% endblock %}
     {% block extra_body %}
     {% endblock %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
+  <footer class="footer">
+    <p>
+    <center>
+        <a href="#">FAQ</a>
+        <a href="#">Contact Us</a>
+    </center>
+    <center>
+        ©2009–2023 N3E | Núcleo de Estudantes de Engenharia Electrónica do
+        Instituto Superior Técnico
+    </center>
+    </p>
+</footer>
 </html>

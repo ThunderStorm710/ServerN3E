@@ -1,10 +1,389 @@
 {% extends 'account/base.html' %}
 
 {% block content %}
-    <div class="text-center">
-        <h2>Home</h2>
-        <p>Hello {{ user.first_name }}!</p>
-        <p>Your Username : {{ user }}</p>
-        <a class="btn btn-dark" href="{% url 'socialaccount_connections' %}">Settings</a>
-    </div>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,600;1,400;1,900&display=swap");
+
+    :root {
+        --primary-color: #02b4cc;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "Nunito", sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.6rem;
+        -webkit-font-smoothing: antialiased;
+        background: #000;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        color: #fff;
+        line-height: 2rem;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .showcase {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        background: url(https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2020/10/WhatsApp-Image-2020-10-05-at-10.26.02-1-1024x575.jpeg) no-repeat center center/cover;
+    }
+
+    .showcase::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .showcase-top {
+        position: relative;
+        height: 90px;
+        z-index: 2;
+    }
+
+    .showcase-top .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .showcase-top a {
+        position: absolute;
+        top: 40%;
+        right: 0;
+        transform: translate(-50%, -50%);
+    }
+
+    .showcase-content {
+        position: relative;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 9rem;
+        z-index: 2;
+    }
+
+    .showcase-content h1 {
+        font-weight: 700;
+        font-size: 5.2rem;
+        line-height: 1.1rem;
+        margin: 0 0 2rem;
+    }
+
+    .showcase-content p {
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 400;
+        font-size: 1.5rem;
+        line-height: 1.25;
+        margin: 1rem 2rem;
+    }
+
+    .showcase-content a {
+        margin-top: 2rem;
+    }
+
+    .section-b {
+        position: relative;
+        background: url(../static/my_site/images/Google.png) no-repeat bottom center/cover;
+        height: 600px;
+    }
+
+    .section-b-inner {
+        color: #fff;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+        max-width: 860px;
+        padding: 5rem 0;
+    }
+
+    .section-b-inner h3 {
+        font-size: 2rem;
+    }
+
+    .section-b-inner h2 {
+        font-size: 5rem;
+        line-height: 5rem;
+        margin-top: 1rem;
+    }
+
+    .section-b-inner p {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    section.gallery {
+        background: #000;
+        width: 100%;
+    }
+
+    .img-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .img-container .text-container {
+        opacity: 0;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgb(0, 0, 0, 0.6);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .img-container .text-container:hover {
+        opacity: 1;
+    }
+
+    .img-container .text-container p {
+        font-size: 3rem;
+        line-height: 3rem;
+    }
+
+    section.gallery .gallery-container {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+      "box1 box2 box2"
+      "box1 box3 box3";
+    }
+
+    section.gallery .gallery-container a:first-child {
+        grid-area: box1;
+        padding: 1rem;
+    }
+
+    section.gallery .gallery-container a:nth-child(2) {
+        grid-area: box2;
+        padding: 1rem;
+    }
+
+    section.gallery .gallery-container a:nth-child(3) {
+        grid-area: box3;
+        padding: 1rem;
+    }
+
+    section.gallery .gallery-container a img {
+        width: 100%;
+    }
+
+    /* Footer */
+
+    .footer {
+        max-width: 75%;
+        margin: 2rem auto;
+        overflow: auto;
+    }
+
+    .footer,
+    .footer a {
+        color: #999;
+        font-size: 0.9rem;
+    }
+
+    .footer p {
+        margin-bottom: 1.5rem;
+    }
+
+    .footer .footer-cols {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 2rem;
+    }
+
+    .footer li {
+        line-height: 1.9;
+    }
+
+    /* Utilities */
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+
+    }
+
+    .btn {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #fff;
+        padding: 0.4rem 1.3rem;
+        font-size: 1rem;
+        text-align: center;
+        border: 0;
+        cursor: pointer;
+        margin-right: 0.5rem;
+        outline: none;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+        border-radius: 2px;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+
+    .btn-rounded {
+        border-radius: 5px;
+    }
+
+    .btn-xl {
+        font-size: 1.8rem;
+        padding: 1rem 2.1rem;
+        text-transform: uppercase;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.8rem 1.3rem;
+        text-transform: uppercase;
+    }
+
+    .btn-icon {
+        margin-left: 1rem;
+    }
+</style>
+<title>N3E</title>
+    <header class="showcase">
+        <div class="showcase-top">
+            <h1 class="logo">N3E</h1>
+        </div>
+        <div class="showcase-content">
+            <h1>Núcleo de Estudantes de Eletrónica</h1>
+            <p>Instituto Superior Técnico - Lisboa</p>
+            <a href="#about" class="btn btn-xl">Saiba mais<i class="fas fa-chevron-right btn-icon"></i>
+            </a>
+        </div>
+    </header>
+    
+    <section class="gallery">
+        <div class="gallery-container">
+            <a href="/about">
+                <div class="img-container">
+                    <img src="https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2022/08/Todos-1024x575.jpg" alt="Equipa"/>
+                    <div class="text-container">
+                        <p style="color:white">
+                            A nossa equipa
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <a href="/eletronica">
+                <div class="img-container">
+                    <img src="https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2020/09/DSC02105-1024x575.jpg" alt="Engenharia Eletrónica"/>
+                    <div class="text-container">
+                        <p style="color:white">
+                            Engenharia Eletrónica
+                        </p>
+                    </div>
+                </div>
+            </a>
+    
+            <a href="/robotics">
+                <div class="img-container">
+                    <img src="https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2020/09/DSC02941-1024x575.jpg" alt="N3E Robotics"/>
+                    <div class="text-container">
+                        <p style="color:white">
+                            N3E Robotics
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <!--    <section class="section-b" id="about">
+        <div class="overlay">
+            <div class="section-b-inner">
+                <h3>Quem somos</h3>
+                <p>
+                    Somos um núcleo de alunos para alunos, com o propósito de
+                    proporcionar-te experiências complementares para a tua formação na
+                    área de eletrónica.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section-b" id="about">
+        <div class="overlay">
+            <div class="section-b-inner">
+                <h3>Engenharia Eletrónica</h3>
+                <p>
+                    Um curso que te vai lançar para a futuro, oferecendo-te uma formação
+                    de excelência, tendo sempre em conta as últimas novidades
+                    tecnológicas.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="section-b" id="about">
+        <div class="overlay">
+            <div class="section-b-inner">
+                <h3>N3E Robotics</h3>
+                <p>
+                    Com uma equipa dedicada ao desenvolvimento de sistemas autónomos e
+                    participação em competições de robótica, o N3E Robotics irá abrir os
+                    teus horizontes.
+                </p>
+            </div>
+        </div>
+    </section>
+    -->
+
+    
+        
+
+    </html>
 {% endblock %}

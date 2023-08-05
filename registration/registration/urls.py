@@ -16,5 +16,9 @@ urlpatterns = [
     path('about/', views.AboutPage, name='about'),
     path('logout/', views.LogoutPage, name='logout'),
     path('door/', views.OpenDoor, name='openDoor'),
+    path('settings/', views.Settings, name='settings'),
+    path('profile/', views.Profile, name='profile'),
+    path('eletronica/', views.Eletronica, name='eletronica'),
+    path('robotics/', views.Robotics, name='robotics'),
     path('accounts/', include("allauth.urls")),
 ]
