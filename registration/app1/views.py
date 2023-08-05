@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 import subprocess
 
 
@@ -13,15 +14,22 @@ def LandingPage(request):
         return redirect('home')
     else:
         return render(request, 'landing.html')
-        
+
 
 @login_required(login_url='login')
 def HomePage(request):
     return render(request, 'home.html')
 
+
+@login_required(login_url='login')
+def HomeDashboard(request):
+    return render(request, 'dashboard/home.html')
+
+
 @login_required(login_url='login')
 def ContactsPage(request):
     return render(request, 'contacts.html')
+
 
 @login_required(login_url='login')
 def AboutPage(request):
@@ -36,13 +44,26 @@ def SignupPage(request):
         email = request.POST.get('email')
         print(username, pass1, pass2, email)
 
+
+        users = User.objects.all()
+        for user in users:
+            if user.username == username:
+                print("Utilizador já existente")
+                return render(request, 'signup.html', {"username_error": "Utilizador já existente"})
+            if user.email == email:
+                print("Email já existente")
+                return render(request, 'signup.html', {"email_error": "Email já existente"})
+
+        
         if pass1 == pass2:
             user = User.objects.create_user(username, email, pass1)
             user.save()
-            # return HttpResponse("User has been created successfully!!")
             return redirect('login')
         else:
-            return HttpResponse("Data already used...")
+            return render(request, 'signup.html', {"pass_error": "Palavras-passe não coincidem"})
+    
+
+
 
     return render(request, 'signup.html')
 
@@ -57,20 +78,21 @@ def LoginPage(request):
             login(request, user)
             return redirect("home")
         else:
-            return HttpResponse("Username or password incorrect or not found")
+            return render(request, 'login.html', {"message": True})
 
-    return render(request, 'login.html')
+    return render(request, 'login.html', {"message": False})
 
 
 def LogoutPage(request):
     logout(request)
     return redirect('signup')
 
+
 @login_required(login_url='login')
 def OpenDoor(request):
     # Comando para executar o arquivo Python
     # Certifique-se de fornecer o caminho completo do arquivo se não estiver na mesma pasta da view.
-    comando = "python exemplo.py" 
+    comando = "python exemplo.py"
 
     # Executa o comando usando o módulo subprocess
     resultado = subprocess.getoutput(comando)
@@ -78,4 +100,3 @@ def OpenDoor(request):
 
     # Retorne o resultado como uma resposta HTTP
     return render(request, 'home.html')
-

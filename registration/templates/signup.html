@@ -51,7 +51,7 @@ body{
     bottom: -80px;
 }
 form{
-    height: 600px;
+    height: 650px;
     width: 450px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -66,7 +66,7 @@ form{
 }
 form *{
     font-family: 'Poppins',sans-serif;
-    color: #ffffff;
+    color: #02b4cc;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
@@ -96,12 +96,12 @@ input{
     font-weight: 300;
 }
 ::placeholder{
-    color: #e5e5e5;
+    color: #02b4cc;
 }
 button{
     margin-top: 14px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #02b4cc;
     color: #080710;
     padding: 15px 0;
     font-size: 18px;
@@ -133,34 +133,71 @@ button{
 }
 
     </style>
+
+    <script>
+        function checkPasswordMatch() {
+            var password1 = document.getElementById("password1").value;
+            var password2 = document.getElementById("password2").value;
+            var message = document.getElementById("message");
+
+            if (password1 === password2) {
+                message.style.color = "green";
+                message.textContent = "Senhas coincidem!";
+            } else {
+                message.style.color = "red";
+                message.textContent = "Senhas não coincidem!";
+            }
+        }
+    </script>
+
+    
 </head>
 <body>
     <div class="background">
-        <!--        
-        <div class="shape"></div>
-        <div class="shape"></div> 
-        -->
-
     </div>
-    <form action="" method="post">
+    <form action="" method="post" id="password-form">
         {% csrf_token %} 
         <h3>Signup Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Username" name="username" id="username">
+        <input type="text" placeholder="Username" name="username" id="username" required>
 
         <label for="email">Email</label>
-        <input type="email" placeholder="Email or Phone" name="email" id="email">
+        <input type="email" placeholder="Email or Phone" name="email" id="email" required>
 
         <label for="password1">Password</label>
-        <input type="password" placeholder="Password" id="password1" name="password1">
+        <input type="password" placeholder="Password" id="password1" onkeyup="checkPasswordMatch()" name="password1" required>
 
 
         <label for="password2">Confirm Password</label>
-        <input type="password" placeholder="Confirm Password" id="password2" name="password2">
-        <button type="submit">Signup</button>
+        <input type="password" placeholder="Confirm Password" id="password2" onkeyup="checkPasswordMatch()" name="password2" required>
+        <p class="error-message" id="password-error" style="display: none;"></p>
+        <p id="message"></p>
+        {% if username_error %}
+        <p style="color: red">Utilizador já existente</p>
+        {% endif %}
+        {% if email_error %}
+        <p style="color: red">Email já existente</p>
+        {% endif %}
         
-        <a href="{% url 'login' %}" >I have already account</a>
+        <button type="submit" style="margin-top: 20px;" id="submit-button">Signup</button>
+        <div style="margin-top: 20px;">
+        <a href="{% url 'login' %}">I have already account</a>
+        </div>
     </form>
 </body>
+<script>
+    document.getElementById('password-form').addEventListener('submit', function(event) {
+        var password1 = document.getElementById('password1').value;
+        var password2 = document.getElementById('password2').value;
+        var errorDisplay = document.getElementById('password-error');
+        
+        if (password1 !== password2) {
+            errorDisplay.style.display = 'block';
+            event.preventDefault(); // Impede o envio do formulário
+        } else {
+            errorDisplay.style.display = 'none';
+        }
+    });
+</script>
 </html>
