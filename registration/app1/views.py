@@ -99,7 +99,7 @@ def OpenDoor(request):
     print(resultado)
 
     # Retorne o resultado como uma resposta HTTP
-    return render(request, 'home.html')
+    return render(request, 'porta.html')
 
 
 @login_required(login_url='login')
@@ -108,7 +108,7 @@ def Settings(request):
 
 @login_required(login_url='login')
 def Profile(request):
-    return render(request, 'home.html')
+    return render(request, 'profile.html')
 
 def Eletronica(request):
     return render(request, 'eletronica.html')
