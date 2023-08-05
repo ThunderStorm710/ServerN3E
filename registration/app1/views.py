@@ -44,7 +44,6 @@ def SignupPage(request):
         email = request.POST.get('email')
         print(username, pass1, pass2, email)
 
-
         users = User.objects.all()
         for user in users:
             if user.username == username:
@@ -54,16 +53,12 @@ def SignupPage(request):
                 print("Email já existente")
                 return render(request, 'signup.html', {"email_error": "Email já existente"})
 
-        
         if pass1 == pass2:
             user = User.objects.create_user(username, email, pass1)
             user.save()
             return redirect('login')
         else:
             return render(request, 'signup.html', {"pass_error": "Palavras-passe não coincidem"})
-    
-
-
 
     return render(request, 'signup.html')
 
@@ -104,16 +99,45 @@ def OpenDoor(request):
 
 @login_required(login_url='login')
 def Settings(request):
+    if request.method == 'POST':
+        fname = request.POST.get('firstName')
+        lname = request.POST.get('lastName')
+        email = request.POST.get('email')
+
+        print(fname, lname, email)
+
+        user = request.user
+
+        if fname != "" and fname != None and user.first_name != fname:
+            user.first_name = fname
+
+        if lname != "" and lname != None and user.last_name != lname:
+            user.last_name = lname
+
+        if email != "" and email != None and user.email != email:
+            user.email = email
+
+        user.save()
+
+        return render(request, 'settings.html', {"message":"Sucesso!"})
     return render(request, 'settings.html')
+
+
+@login_required(login_url='login')
+def Editar(request):
+    user = request.user
+
+    return render(request, 'settings.html')
+
 
 @login_required(login_url='login')
 def Profile(request):
     return render(request, 'profile.html')
 
+
 def Eletronica(request):
     return render(request, 'eletronica.html')
 
+
 def Robotics(request):
     return render(request, 'robotics.html')
-
-

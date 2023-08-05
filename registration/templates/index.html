@@ -1,130 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snail Project | We Breed Snails</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+	<meta charset="UTF-8">
+	<title>Account Settings UI Design</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+	<section class="py-5 my-5">
+		<div class="container">
+			<h1 class="mb-5">Account Settings</h1>
+			<div class="bg-white shadow rounded-lg d-block d-sm-flex">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<img src="img/user2.jpg" alt="Image" class="shadow">
+						</div>
+						<h4 class="text-center">Kiran Acharya</h4>
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fa fa-home text-center mr-1"></i> 
+							Account
+						</a>
+						<a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
+							<i class="fa fa-key text-center mr-1"></i> 
+							Password
+						</a>
+						<a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab" aria-controls="security" aria-selected="false">
+							<i class="fa fa-user text-center mr-1"></i> 
+							Security
+						</a>
+						<a class="nav-link" id="application-tab" data-toggle="pill" href="#application" role="tab" aria-controls="application" aria-selected="false">
+							<i class="fa fa-tv text-center mr-1"></i> 
+							Application
+						</a>
+						<a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification" role="tab" aria-controls="notification" aria-selected="false">
+							<i class="fa fa-bell text-center mr-1"></i> 
+							Notification
+						</a>
+					</div>
+				</div>
+				<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+						<h3 class="mb-4">Account Settings</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>First Name</label>
+								  	<input type="text" class="form-control" value="Kiran">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Last Name</label>
+								  	<input type="text" class="form-control" value="Acharya">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Email</label>
+								  	<input type="text" class="form-control" value="kiranacharya287@gmail.com">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Phone number</label>
+								  	<input type="text" class="form-control" value="+91 9876543215">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Company</label>
+								  	<input type="text" class="form-control" value="Kiran Workspace">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Designation</label>
+								  	<input type="text" class="form-control" value="UI Developer">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+								  	<label>Bio</label>
+									<textarea class="form-control" rows="4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore vero enim error similique quia numquam ullam corporis officia odio repellendus aperiam consequatur laudantium porro voluptatibus, itaque laboriosam veritatis voluptatum distinctio!</textarea>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+						<h3 class="mb-4">Password Settings</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Old password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>New password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Confirm new password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+						<h3 class="mb-4">Security Settings</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Login</label>
+								  	<input type="text" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Two-factor auth</label>
+								  	<input type="text" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="recovery">
+										<label class="form-check-label" for="recovery">
+										Recovery
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
+						<h3 class="mb-4">Application Settings</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="app-check">
+										<label class="form-check-label" for="app-check">
+										App check
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" >
+										<label class="form-check-label" for="defaultCheck2">
+										Lorem ipsum dolor sit.
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
+						<h3 class="mb-4">Notification Settings</h3>
+						<div class="form-group">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="notification1">
+								<label class="form-check-label" for="notification1">
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum accusantium accusamus, neque cupiditate quis
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="notification2" >
+								<label class="form-check-label" for="notification2">
+									hic nesciunt repellat perferendis voluptatum totam porro eligendi.
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="notification3" >
+								<label class="form-check-label" for="notification3">
+									commodi fugiat molestiae tempora corporis. Sed dignissimos suscipit
+								</label>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <header class="showcase">
-        <div class="showcase-top">
-            <h1 class="logo">Snail Project</h1>
-            <a href="#" class="btn btn-rounded">Sign In</a>
-        </div>
-        <div class="showcase-content">
-            <h1>A Snail Hides In A Shell</h1>
-            <p>Even a snail will eventually reach its destination.</p>
-            <a href="#about" class="btn btn-xl">
-                Learn More
-                <i class="fas fa-chevron-right btn-icon"></i>
-            </a>
-        </div>   
-    </header>
 
-
-     
-
-    <section class="gallery">
-        <div class="gallery-container">    
-            
-            <a href="#">
-                <div class="img-container">
-                    <img src="image/pexels-photo-2530916.jpeg" alt="snail1">
-                    <div class="text-container">
-                      <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, saepe!</p>
-                    </div>
-                </div>
-                
-            </a>
-            
-            <a href="#">
-                <div class="img-container">
-                    <img src="image/pexels-photo-1411971.jpeg" alt="snail1">
-                    <div class="text-container">
-                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, saepe!</p>
-                      </div>
-                </div>
-            </a>
-
-            <a href="#">
-                <div class="img-container">
-                    <img src="image/winter-rod-snow-ice-39249.jpeg" alt="snail1">
-                    <div class="text-container">
-                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, saepe!</p>
-                      </div>
-                </div>       
-            </a>
-
- 
-          
-        </div>
-    </section>
-
-
-    <!-- Overlay Text -->
-    <section class="section-b" id="about">
-        <div class="overlay">
-            <div class="section-b-inner">
-                <h3>About Snail Project.</h3>
-                <h2>A hibernating snail is not necessarily dead.</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos temporibus eaque similique illo magni blanditiis ab nam numquam exercitationem nesciunt.</p>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- News letter -->
-
-    <section class="news-letter">
-        <div class="news-letter-inner">
-            <h2>Subscribe To Us</h2>
-            <h3>Recieve the latest news about the Snail Project</h3>
-            <form method="post" name="email-form" data-netlify="true">
-                <div class="email-form">
-                    <span class="form-control-wrap">
-                        <input type="email" name="email" id="email" size="40" class="form-control" placeholder="Email">
-                    </span>
-                    <button type="submit" class="form-control submit">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section>
-
-
-    <footer class="footer">
-        <p>Questions? Call 1-233-444-8888</p>
-        <div class="footer-cols">
-            <ul>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Investor Relations</a></li>
-                <li><a href="#">Ways To Breed</a></li>
-                <li><a href="#">Customize Shell</a></li>
-            </ul>
-            <ul>
-                <li><a href="#">Help Center</a> </li>
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">Term of Use</a></li>
-                <li><a href="#">Contact Us</a></li>   
-            </ul>
-            <ul>
-                <li><a href="#">Account</a></li>
-                <li><a href="#">Redeem Gift Cards</a></li>
-                <li><a href="#">Privacy</a></li>
-                <li><a href="#">Speed Test</a></li>       
-            </ul>
-            <ul>
-                <li><a href="#">Media Center</a></li>
-                <li><a href="#">Buy Gift Cards</a></li>
-                <li><a href="#">Cookie Preferences</a></li>
-                <li><a href="#">Legal Notices</a></li>   
-            </ul>
-        </div>
-    </footer>
-
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

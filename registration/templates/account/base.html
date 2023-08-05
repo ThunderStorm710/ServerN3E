@@ -26,6 +26,15 @@
       html {
           scroll-behavior: smooth;
       }
+
+      .background{
+        width: 430px;
+        height: 520px;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 50%;
+        top: 50%;
+      } 
       .form-group {
         margin-top: 10px;
       }
@@ -38,14 +47,6 @@
           background: #000;
       }
 
-      h1,
-      h2,
-      h3,
-      h4 {
-          color: #fff;
-          line-height: 2rem;
-      }
-
       ul {
           list-style: none;
       }
@@ -54,110 +55,6 @@
           color: #fff;
           text-decoration: none;
       }
-
-      img {
-          width: 100%;
-      }
-
-      .showcase {
-          width: 100%;
-          height: 100vh;
-          position: relative;
-          background: url(https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2020/10/WhatsApp-Image-2020-10-05-at-10.26.02-1-1024x575.jpeg) no-repeat center center/cover;
-      }
-
-      .showcase::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 1;
-          background: rgba(0, 0, 0, 0.5);
-      }
-
-      .showcase-top {
-          position: relative;
-          height: 90px;
-          z-index: 2;
-      }
-
-      .showcase-top .logo {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-      }
-
-      .showcase-top a {
-          position: absolute;
-          top: 40%;
-          right: 0;
-          transform: translate(-50%, -50%);
-      }
-
-      .showcase-content {
-          position: relative;
-          margin: auto;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-          margin-top: 9rem;
-          z-index: 2;
-      }
-
-      .showcase-content h1 {
-          font-weight: 700;
-          font-size: 5.2rem;
-          line-height: 1.1rem;
-          margin: 0 0 2rem;
-      }
-
-      .showcase-content p {
-          text-transform: uppercase;
-          color: #fff;
-          font-weight: 400;
-          font-size: 1.5rem;
-          line-height: 1.25;
-          margin: 1rem 2rem;
-      }
-
-      .showcase-content a {
-          margin-top: 2rem;
-      }
-
-      .img-container {
-          position: relative;
-          display: inline-block;
-      }
-
-      .img-container .text-container {
-          opacity: 0;
-          position: absolute;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 100%;
-          background: rgb(0, 0, 0, 0.6);
-          transition: all 0.3s ease-in-out;
-      }
-
-      .img-container .text-container:hover {
-          opacity: 1;
-      }
-
-      .img-container .text-container p {
-          font-size: 3rem;
-          line-height: 3rem;
-      }
-
       /* Footer */
 
       .footer {
@@ -187,15 +84,6 @@
       }
 
       /* Utilities */
-
-      .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 100%;
-          background-color: rgba(0, 0, 0, 0.4);
-      }
 
       .btn {
           display: inline-block;
@@ -237,8 +125,7 @@
       }
   </style>
 
-  </head>
-  <body>
+
     <nav class="navbar navbar-expand-lg " style="background-color:black;">
       <a class="navbar-brand" href="/" style="color:#02b4cc;">N3E</a>   
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -280,27 +167,13 @@
       {% endif %}
       </div>
     </nav>
+</head>
 
-  <!--
-    <div class="p-3 mb-3 bg-dark">
-      <div class="container d-flex justify-content-between">
-          {% if user.is_authenticated %}
-          <div><a class="text-light" href="{% url 'account_email' %}">Change E-mail</a></div>
-          <div><a class="text-light" href="{% url 'home' %}">Home</a></div>
-          <div><a class="text-light" href="{% url 'account_logout' %}">Sign Out</a></div>
-          {% else %}
-          <div><a class="text-light" href="{% url 'account_login' %}">Sign In</a></div>
-          <div><a class="text-light" href="{% url 'account_signup' %}">Sign Up</a></div>
-          {% endif %}
-      </div>
-    </div>
-  -->
     {% block content %}
     {% endblock %}
     {% block extra_body %}
     {% endblock %}
 
-  </body>
   <footer class="footer">
     <p>
     <center>
