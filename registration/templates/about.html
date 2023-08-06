@@ -1,1 +1,249 @@
 {% extends 'account/base.html' %}
+{% block content %}
+<style>
+    h1,
+    h2,
+    h3,
+    h4 {
+        color: #fff;
+        line-height: 2rem;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .showcase {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        background: url(https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2020/10/WhatsApp-Image-2020-10-05-at-10.26.02-1-1024x575.jpeg) no-repeat center center/cover;
+    }
+
+    .showcase::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .showcase-top {
+        position: relative;
+        height: 90px;
+        z-index: 2;
+    }
+
+    .showcase-top .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .showcase-top a {
+        position: absolute;
+        top: 40%;
+        right: 0;
+        transform: translate(-50%, -50%);
+    }
+
+    .showcase-content {
+        position: relative;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 9rem;
+        z-index: 2;
+    }
+
+    .showcase-content h1 {
+        font-weight: 700;
+        font-size: 5.2rem;
+        line-height: 1.1rem;
+        margin: 0 0 2rem;
+    }
+
+    .showcase-content p {
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 400;
+        font-size: 1.5rem;
+        line-height: 1.25;
+        margin: 1rem 2rem;
+    }
+
+    .showcase-content a {
+        margin-top: 2rem;
+    }
+
+    .section-a {
+        position: relative;
+        background: url(https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2020/09/DSC02105-1024x575.jpg);
+        background-size: 100% auto;
+        height: 700px;
+    }
+
+    .section-b {
+        position: relative;
+        background: url(https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2022/08/Todos-1024x575.jpg);
+        background-size: 100% auto;
+        height: 700px;
+    }    
+    
+    .section-c {
+        position: relative;
+        background: url(https://n3e.tecnico.ulisboa.pt/~n3e.daemon/wp-content/uploads/2020/09/DSC02941-1024x575.jpg);
+        background-size: 100% auto;
+        height: 700px;
+    }
+
+
+
+    .section-b-inner {
+        color: #fff;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+        max-width: 860px;
+        padding: 5rem 0;
+        position: relative;
+        background-position: center;
+
+    }
+
+    .section-b-inner h3 {
+        font-size: 2rem;
+    }
+
+    .section-b-inner h2 {
+        font-size: 5rem;
+        line-height: 5rem;
+        margin-top: 1rem;
+    }
+
+    .section-b-inner p {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .section-b-inner a {
+        margin-top: 20rem;
+        
+    }
+
+
+    
+    /* Utilities */
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+
+    }
+
+    .btn {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #fff;
+        padding: 0.4rem 1.3rem;
+        font-size: 1rem;
+        text-align: center;
+        border: 0;
+        cursor: pointer;
+        margin-right: 0.5rem;
+        outline: none;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+        border-radius: 2px;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+
+    .btn-rounded {
+        border-radius: 5px;
+    }
+
+    .btn-xl {
+        font-size: 1.8rem;
+        padding: 1rem 2.1rem;
+        text-transform: uppercase;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.8rem 1.3rem;
+        text-transform: uppercase;
+    }
+
+    .btn-icon {
+        margin-left: 1rem;
+    }
+</style>
+
+<title>Quem somos</title>
+<header class="showcase">
+    <div class="showcase-top">
+        <h1 class="logo">N3E</h1>
+    </div>
+    <div class="showcase-content">
+        <h1>Quem somos</h1>
+        <p>Instituto Superior Técnico - Lisboa</p>
+        <a href="#about" class="btn btn-xl">Saiba mais<i class="fas fa-chevron-right btn-icon"></i>
+        </a>
+    </div>
+
+</header>
+<div>
+    
+    <section class="section-b" id="about">
+        <div class="overlay">
+            <div class="section-b-inner">
+                <h2>A nossa equipa</h2>
+                <p>O N3E é um núcleo de estudantes de engenharia eletrónica, formado em 2009 sob o propósito de deixar uma marca no percurso da comunidade estundantil.</p>
+                
+                <a href="#esforco" onmouseover="this.style.color='#02b4cc';" onmouseout="this.style.color='white';"><i class="fa-regular fa-circle-arrow-down fa-4x"></i></a>
+            </div>
+        </div>
+    </section>    
+    <section class="section-a" id="esforco">
+        <div class="overlay">
+            <div class="section-b-inner">
+                <h2>Um esforço contínuo</h2>
+                <p>Ao longo dos anos foi feito um esforço contínuo com o intuito de aprimorar o núcleo e construir o nosso legado. </p>
+                <a href="#atualmente" onmouseover="this.style.color='#02b4cc';" onmouseout="this.style.color='white';"><i class="fa-regular fa-circle-arrow-down fa-4x"></i></a>
+    
+            </div>
+        </div>
+    </section>
+    <section class="section-c" id="atualmente">
+        <div class="overlay">
+            <div class="section-b-inner">
+                <h2>Atualmente</h2>
+                <p>Agora, em 2022/23, aqui nos encontramos com uma atitude ativa e de entrega aos alunos de eletrónica e o meio que nos envolve.</p>
+                <p>Desde a oferta de workshops, a uma vida académica mais rica ou um intermediário entre alunos e ofertas profissionais, o N3E desempenha diversos papéis em prol dos seus alunos</p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

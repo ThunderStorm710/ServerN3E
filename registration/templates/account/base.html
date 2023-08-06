@@ -72,18 +72,20 @@
           font-size: 0.9rem;
       }
 
-      .footer p {
-          margin-bottom: 1.5rem;
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Espaçamento entre os ícones */
       }
-
-      .footer .footer-cols {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          grid-gap: 2rem;
+    
+      .social-icons a i {
+        color: #999; /* Cor padrão */
+        transition: color 0.3s ease , transform 0.3s ease; /* Transição suave da cor */
       }
-
-      .footer li {
-          line-height: 1.9;
+    
+      .social-icons a i:hover {
+        color: #FFF; /* Cor mais clara ao passar o mouse */
+        transform: scale(1.2);
       }
 
       /* Utilities */
@@ -177,7 +179,18 @@
     {% block extra_body %}
     {% endblock %}
 
+    
   <footer class="footer">
+    <span class="social-icons">
+    <p style="margin: 10px 10px; gap: 20px; display: flex; justify-content: center; margin-bottom: 1.5rem;">
+        <a href="https://www.facebook.com/n3e.tecnico/" target="_blank"><i class="fa-brands fa-facebook fa-4x "></i></a>
+        <a href="https://www.youtube.com/user/N3ETV" target="_blank"><i class="fa-brands fa-youtube fa-4x"></i></a>
+        <a href="https://www.instagram.com/n3eist/" target="_blank"><i class="fa-brands fa-instagram fa-4x"></i></a>
+        <a href="https://github.com/n3erobotics" target="_blank"><i class="fa-brands fa-github fa-4x"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-discord fa-4x" ></i></a>
+        <a href="https://www.linkedin.com/company/n3e---n-cleo-de-estudantes-de-engenharia-electr-nica/" target="_blank"><i class="fa-brands fa-linkedin fa-4x"></i></a>
+    </p>
+  </span>
     <p>
     <center>
         <a href="#">FAQ</a>
@@ -187,14 +200,7 @@
         ©2009–2023 N3E | Núcleo de Estudantes de Engenharia Electrónica do
         Instituto Superior Técnico
     </center>
-    <center>
-      <a href="https://www.facebook.com/n3e.tecnico/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://www.youtube.com/user/N3ETV" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://www.instagram.com/n3eist/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://github.com/n3erobotics" target="_blank"><i class="fa-brands fa-github"></i></a>
-      <a href="#"><i class="fa-brands fa-discord" target="_blank"></i></a>
-      <a href="https://www.linkedin.com/company/n3e---n-cleo-de-estudantes-de-engenharia-electr-nica/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-  </center>
+
     </p>
 
 </footer>
