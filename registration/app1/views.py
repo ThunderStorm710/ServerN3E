@@ -1,9 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth.models import User
+from app1.models import User, Porta
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import subprocess
 from django.contrib.auth import update_session_auth_hash
+import datetime
+
 
 
 
@@ -88,13 +90,44 @@ def LogoutPage(request):
 def OpenDoor(request):
     # Comando para executar o arquivo Python
     # Certifique-se de fornecer o caminho completo do arquivo se não estiver na mesma pasta da view.
-    comando = "python exemplo.py"
+    registos_porta = Porta.objects.all().order_by('id')
+    print(registos_porta)
+    cooldown = False
 
-    # Executa o comando usando o módulo subprocess
-    resultado = subprocess.getoutput(comando)
-    print(resultado)
+    if len(registos_porta) > 0:
+        ultimo_registo = registos_porta[len(registos_porta)-1]
+        print(ultimo_registo)
 
-    # Retorne o resultado como uma resposta HTTP
+        data = ultimo_registo.registo_hora.replace(tzinfo=None)
+        print(data)
+
+        now = datetime.datetime.now()
+        print(now)
+        diferenca = now - data
+        diferenca_em_segundos = diferenca.total_seconds()
+        print(f"Diferença total de segundos: {diferenca_em_segundos}")
+
+        if diferenca_em_segundos < 5:
+            cooldown = True
+
+    if not cooldown:    
+        porta = Porta.objects.create(utilizador=request.user)
+        porta.save()
+        
+        comando = "python exemplo.py"
+
+        # Executa o comando usando o módulo subprocess
+        resultado = subprocess.getoutput(comando)
+        print(resultado)
+
+        # Retorne o resultado como uma resposta HTTP
+        return render(request, 'porta.html', {"message": "Porta em cooldown!"})
+    else:
+        return render(request, 'porta.html', {"message": "Porta aberta com sucesso!"})
+
+
+@login_required(login_url='login')
+def Door(request):
     return render(request, 'porta.html')
 
 
