@@ -199,6 +199,11 @@
     .btn-icon {
         margin-left: 1rem;
     }
+    .separator {
+        width: 100%;
+        height: 10px;
+        background-color: black; /* Cor do separador */
+    }
 </style>
 
 <title>Quem somos</title>
@@ -225,7 +230,9 @@
                 <a href="#esforco" onmouseover="this.style.color='#02b4cc';" onmouseout="this.style.color='white';"><i class="fa-regular fa-circle-arrow-down fa-4x"></i></a>
             </div>
         </div>
-    </section>    
+    </section>  
+    <div class="separator"></div>
+  
     <section class="section-a" id="esforco">
         <div class="overlay">
             <div class="section-b-inner">
@@ -236,6 +243,9 @@
             </div>
         </div>
     </section>
+
+    <div class="separator"></div>
+
     <section class="section-c" id="atualmente">
         <div class="overlay">
             <div class="section-b-inner">
@@ -245,5 +255,7 @@
             </div>
         </div>
     </section>
+    <div class="separator"></div>
+
 </div>
 {% endblock %}
