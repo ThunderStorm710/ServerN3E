@@ -2,8 +2,9 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 import subprocess
+from django.contrib.auth import update_session_auth_hash
+
 
 
 # Create your views here.
@@ -100,26 +101,50 @@ def OpenDoor(request):
 @login_required(login_url='login')
 def Settings(request):
     if request.method == 'POST':
-        fname = request.POST.get('firstName')
-        lname = request.POST.get('lastName')
-        email = request.POST.get('email')
+        form_type = request.POST.get('form_type')
+        
+        if form_type == 'form1':
+            fname = request.POST.get('firstName')
+            lname = request.POST.get('lastName')
+            email = request.POST.get('email')
 
-        print(fname, lname, email)
+            print(fname, lname, email)
 
-        user = request.user
+            user = request.user
 
-        if fname != "" and fname != None and user.first_name != fname:
-            user.first_name = fname
+            if fname != "" and fname != None and user.first_name != fname:
+                user.first_name = fname
 
-        if lname != "" and lname != None and user.last_name != lname:
-            user.last_name = lname
+            if lname != "" and lname != None and user.last_name != lname:
+                user.last_name = lname
 
-        if email != "" and email != None and user.email != email:
-            user.email = email
+            if email != "" and email != None and user.email != email:
+                user.email = email
 
-        user.save()
+            user.save()
 
-        return render(request, 'settings.html', {"message":"Sucesso!"})
+            return render(request, 'settings.html', {"message":"Sucesso!"}) 
+        
+        elif form_type == 'form2':
+            #print("form2")
+            current_password = request.POST.get('pass1')
+            new_password = request.POST.get('pass2')
+            new_password1 = request.POST.get('pass3')
+            #print(current_password, new_password)
+            
+            user = request.user
+            if user.check_password(current_password):
+                if new_password == new_password1:
+                    user.set_password(new_password)
+                    user.save()
+                    update_session_auth_hash(request, user)             
+                    return render(request, 'settings.html', {"message2":"Sucesso!"}) 
+                else:
+
+                    return render(request, 'settings.html', {"message2":"Insucesso!"}) 
+            else:
+                return render(request, 'settings.html', {"message2":"Insucesso!"}) 
+        
     return render(request, 'settings.html')
 
 
