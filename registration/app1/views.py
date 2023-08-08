@@ -229,8 +229,13 @@ def Profile(request):
         user = request.user
         registos_porta = Porta.objects.filter(utilizador=user).order_by('-id')
 
+        print(registos_porta)
+        if len(registos_porta) != 0:
+            content = {"registos": registos_porta, "r": True}
+        else:
+            content = {"registos": registos_porta, "r": False}
 
-        return render(request, 'profile.html', {"registos": registos_porta})
+        return render(request, 'profile.html', content)
 
 
 def Eletronica(request):
