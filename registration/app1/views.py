@@ -1,15 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
-from app1.models import User, Porta
+from app1.models import User, Porta, Mensagem
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import subprocess
 from django.contrib.auth import update_session_auth_hash
 import datetime
 
-
-
-
-# Create your views here.
 
 def LandingPage(request):
     print(request.user.is_authenticated, "----")
@@ -29,12 +25,26 @@ def HomeDashboard(request):
     return render(request, 'dashboard/home.html')
 
 
-@login_required(login_url='login')
 def ContactsPage(request):
+    if request.method == 'POST':
+        name = request.POST.get('nome')
+        email = request.POST.get('email')
+        text = request.POST.get('texto')
+
+        if name == "" or email == "" or text == "":
+            return render(request, 'contacts.html', {"mensagem": "Insucesso"})
+        else:
+            mensagem = Mensagem.objects.create(nome=name, email=email, texto=text)
+            mensagem.save()
+
+
+            print(name, email, text)
+            return render(request, 'contacts.html', {"mensagem": "Sucesso"})
+
+
     return render(request, 'contacts.html')
 
 
-@login_required(login_url='login')
 def AboutPage(request):
     return render(request, 'about.html')
 
@@ -127,11 +137,6 @@ def OpenDoor(request):
 
 
 @login_required(login_url='login')
-def Door(request):
-    return render(request, 'porta.html')
-
-
-@login_required(login_url='login')
 def Settings(request):
     if request.method == 'POST':
         form_type = request.POST.get('form_type')
@@ -182,15 +187,51 @@ def Settings(request):
 
 
 @login_required(login_url='login')
-def Editar(request):
-    user = request.user
-
-    return render(request, 'settings.html')
-
-
-@login_required(login_url='login')
 def Profile(request):
-    return render(request, 'profile.html')
+    # Comando para executar o arquivo Python
+    # Certifique-se de fornecer o caminho completo do arquivo se não estiver na mesma pasta da view.
+    if request.method == 'POST':
+        password = request.POST.get('pass')
+        user = request.user
+
+        if user.check_password(password):
+    
+            registos_porta = Porta.objects.all().order_by('-id')
+            cooldown = False
+            now = datetime.datetime.now().replace(tzinfo=None)
+            if len(registos_porta) > 0:
+                
+                ultimo_registo = registos_porta[0]
+
+                data = ultimo_registo.registo_hora.replace(tzinfo=None)
+
+                diferenca = now - data
+                diferenca_em_segundos = diferenca.total_seconds()
+
+                if diferenca_em_segundos < 10:
+                    cooldown = True
+
+            if not cooldown:    
+                porta = Porta.objects.create(utilizador=request.user, registo_hora=now)
+                porta.save()
+                abrirPorta()
+                print("Porta aberta com sucesso!")
+                return render(request, 'profile.html', {"mensagem": "Porta aberta com sucesso!", "flag": True})
+            else:
+                print("Porta em cooldown!")
+                return render(request, 'profile.html', {"mensagem": "Porta em cooldown!", "flag": False})
+                
+        else:
+            print("Palavra-passe inválida!")
+            return render(request, 'profile.html', {"mensagem": "Palavra-passe inválida!", "flag": False})
+    else:
+
+        user = request.user
+        registos_porta = Porta.objects.filter(utilizador=user).order_by('-id')
+        for i in registos_porta:
+            print(i.id, i.registo_hora)
+
+        return render(request, 'profile.html', {"registos": registos_porta})
 
 
 def Eletronica(request):
@@ -199,3 +240,10 @@ def Eletronica(request):
 
 def Robotics(request):
     return render(request, 'robotics.html')
+
+def abrirPorta():
+    comando = "python exemplo.py"
+
+    # Executa o comando usando o módulo subprocess
+    resultado = subprocess.getoutput(comando)
+    print(resultado)

@@ -1,1 +1,246 @@
-{% extends 'account/base.html' %}
+{% extends 'account/base.html' %} {% block content %} {% load static %}
+
+<link
+  href="{% static 'fontawesomefree/css/fontawesome.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/brands.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/solid.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+  integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm"
+  crossorigin="anonymous"
+/>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .contact {
+    position: relative;
+    min-height: 100vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url(https://taguspark.pt/wp-content/uploads/TagusPark_home-scaled.jpg);
+    background-size: cover;
+  }
+  .contact .content {
+    max-width: 800px;
+    text-align: center;
+  }
+
+  .contact .content h2 {
+    font-size: 40px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .contact .content p {
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .container .contactInfo {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container .contactInfo .box {
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+  }
+
+  .container .contactInfo .box .icon {
+    min-width: 60px;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+  }
+
+  .container .contactInfo .box .text {
+    display: flex;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #fff;
+    flex-direction: column;
+    font-weight: 300;
+  }
+
+  .container .contactInfo .box .text h3 {
+    font-weight: 500;
+    color: #00bcd4;
+  }
+  .contactForm {
+    width: 40%;
+    padding: 40px;
+    background: #fff;
+  }
+
+  .contactForm h2 {
+    font-size: 30px;
+    color: #333;
+    font-weight: 500;
+  }
+  .contactForm .inputBox {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .contactForm .inputBox input,
+  .contactForm .inputBox textarea {
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #333;
+    outline: none;
+    resize: none;
+  }
+
+  .contactForm .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    pointer-events: none;
+    transition: 0.5s;
+    color: #666;
+  }
+
+  .contactForm .inputBox input:focus ~ span,
+  .contactForm .inputBox input:valid ~ span,
+  .contactForm .inputBox textarea:focus ~ span,
+  .contactForm .inputBox textarea:valid ~ span {
+    color: #e91e63;
+    font-size: 12px;
+    transform: translateY(-20px);
+  }
+
+  .contactForm .inputBox input[type="submit"] {
+    width: 100px;
+    background: #00bcd4;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  @media (max-width: 991px) {
+    .contact {
+      padding: 50px;
+    }
+    .container {
+      flex-direction: column;
+    }
+    .container .contactInfo {
+      margin-bottom: 40px;
+    }
+    .container .contactInfo,
+    .contactForm {
+      width: 100%;
+    }
+  }
+</style>
+<body>
+  <section class="contact">
+    <div class="content">
+      <h2>Contactos</h2>
+    </div>
+
+    <div class="container">
+      <div class="contactInfo">
+        <div class="box">
+          <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="text">
+            <h3><b>Morada</b></h3>
+            <p>
+              Instituto Superior Técnico – Campus do Taguspark (Sala 1.20) Av.
+              Prof. Dr. Cavaco Silva 2744-016 Porto Salvo Oeiras, Portugal
+            </p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="text">
+            <h3><b>Telefone</b></h3>
+            <p>+351 210407007 (ext. 5207)</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="icon"><i class="fa-solid fa-id-card"></i></div>
+          <div class="text">
+            <h3><b>NIF</b></h3>
+            <p>508899141</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="text">
+            <h3><b>Email</b></h3>
+            <p>geral@n3e.tecnico.ulisboa.pt</p>
+          </div>
+        </div>
+      </div>
+      <div class="contactForm">
+        <form method="post">
+          {% csrf_token %}
+          <h2>Envie uma mensagem</h2>
+          <div class="inputBox">
+            <input type="text" name="nome" required />
+            <span>Nome</span>
+          </div>
+          <div class="inputBox">
+            <input type="email" name="email" required />
+            <span>Email</span>
+          </div>
+          <div class="inputBox">
+            <textarea type="text" name="texto" required></textarea>
+            <span>Mensagem</span>
+          </div>
+          <div class="inputBox">
+            <input type="submit" name="botão" value="Send" />
+            {% if mensagem %}
+            <p style="color: green">Mensagem enviada com {{mensagem}}</p>
+            {% else %}
+            <p style="color: red">Mensagem enviada com {{mensagem}}</p>
+            {% endif%}
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+
+{% endblock %}

@@ -11,5 +11,19 @@ def fk(model):
 class Porta(models.Model):
 
     utilizador = fk(User)
-    registo_hora = models.DateTimeField(default=datetime.datetime.now())
+    registo_hora = models.DateTimeField()
+
+    def __str__(self) -> str:
+        return f"{self.utilizador.username} --> {self.registo_hora}"
+
+
+class Mensagem(models.Model):
+
+    nome = models.CharField(max_length=100)
+    email = models.EmailField()
+    texto = models.TextField()
+
+    def __str__(self) -> str:
+        return f"{self.nome} --> {self.email}"
+
 
