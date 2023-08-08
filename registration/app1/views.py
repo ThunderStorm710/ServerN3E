@@ -228,8 +228,7 @@ def Profile(request):
 
         user = request.user
         registos_porta = Porta.objects.filter(utilizador=user).order_by('-id')
-        for i in registos_porta:
-            print(i.id, i.registo_hora)
+
 
         return render(request, 'profile.html', {"registos": registos_porta})
 
