@@ -20,4 +20,5 @@ urlpatterns = [
     path('eletronica/', views.Eletronica, name='eletronica'),
     path('robotics/', views.Robotics, name='robotics'),
     path('accounts/', include("allauth.urls")),
+    path('social-auth/', include('social_django.urls', namespace='social')),
 ]

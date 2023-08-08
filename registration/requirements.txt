@@ -8,3 +8,6 @@ fontawesomefree==6.4.0
 sqlparse==0.4.3
 django-allauth==0.54.0
 crispy-bootstrap5==0.7
+python-social-auth[django]==0.3.6
+social-auth-app-django==5.2.0
+social-auth-core==4.4.2
