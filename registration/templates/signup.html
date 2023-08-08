@@ -157,20 +157,20 @@ button{
     </div>
     <form action="" method="post" id="password-form">
         {% csrf_token %} 
-        <h3>Signup Here</h3>
+        <h3>Criar conta</h3>
 
-        <label for="username">Username</label>
-        <input type="text" placeholder="Username" name="username" id="username" required>
+        <label for="username">Nome de utilizador</label>
+        <input type="text" placeholder="Nome de utilizador" name="username" id="username" required>
 
         <label for="email">Email</label>
-        <input type="email" placeholder="Email or Phone" name="email" id="email" required>
+        <input type="email" placeholder="Email" name="email" id="email" required>
 
-        <label for="password1">Password</label>
-        <input type="password" placeholder="Password" id="password1" onkeyup="checkPasswordMatch()" name="password1" required>
+        <label for="password1">Palavra-passe</label>
+        <input type="password" placeholder="Palavra-passe" id="password1" onkeyup="checkPasswordMatch()" name="password1" required>
 
 
-        <label for="password2">Confirm Password</label>
-        <input type="password" placeholder="Confirm Password" id="password2" onkeyup="checkPasswordMatch()" name="password2" required>
+        <label for="password2">Confirmar palavra-passe</label>
+        <input type="password" placeholder="Confirmar palavra-passe" id="password2" onkeyup="checkPasswordMatch()" name="password2" required>
         <p class="error-message" id="password-error" style="display: none;"></p>
         <p id="message"></p>
         {% if username_error %}
@@ -180,9 +180,9 @@ button{
         <p style="color: red">Email já existente</p>
         {% endif %}
         
-        <button type="submit" style="margin-top: 20px;" id="submit-button">Signup</button>
+        <button type="submit" style="margin-top: 20px;" id="submit-button">Criar conta</button>
         <div style="margin-top: 20px;">
-        <a href="{% url 'login' %}">I have already account</a>
+        <a href="{% url 'login' %}">Já tenho uma conta</a>
         </div>
     </form>
 </body>
