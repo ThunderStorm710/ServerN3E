@@ -35,11 +35,15 @@ SITE_ID = 1
 AUTHENTICATION_BACKENDS = {
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-    'social_core.backends.google.GoogleOAuth2'
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
 }
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '651102929864-104f93gngthsmut54r18j4a2inq4bunb.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_GITHUB_KEY = '78ddcaf86d379b2fd8da'
+SOCIAL_AUTH_GITHUB_SECRET = '2c8a486c6c348a268c07cbac4cfd9f05adea9e4b'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -170,8 +174,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
-MEDIA_URL = 'imagens/'
 
 
 # Default primary key field type

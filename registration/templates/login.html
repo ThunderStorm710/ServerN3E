@@ -135,7 +135,7 @@ button{
         {% load socialaccount %}
         <div class="social" style="margin-top: 40px;">
           <a href="{% url 'social:begin' 'google-oauth2' %}"><div><i class="fab fa-google" style="color: #ffffff"></i></div></a>
-          <a class="fb" href="{% provider_login_url 'github' %}?next=/"><div ><i class="fab fa-github" style="color: #ffffff"></i></div></a>
+          <a class="fb" href="{% url 'social:begin' 'github' %}"><div ><i class="fab fa-github" style="color: #ffffff"></i></div></a>
         </div>
         <a href="{% url 'signup' %}">Criar uma conta</a>   
     </form>
