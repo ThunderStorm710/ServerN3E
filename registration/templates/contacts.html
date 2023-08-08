@@ -231,11 +231,10 @@
           </div>
           <div class="inputBox">
             <input type="submit" name="botão" value="Send" />
-            {% if mensagem %}
+            {% if flag %}
             <p style="color: green">Mensagem enviada com {{mensagem}}</p>
-            {% else %}
-            <p style="color: red">Mensagem enviada com {{mensagem}}</p>
-            {% endif%}
+
+            {% endif %}
           </div>
         </form>
       </div>

@@ -32,14 +32,14 @@ def ContactsPage(request):
         text = request.POST.get('texto')
 
         if name == "" or email == "" or text == "":
-            return render(request, 'contacts.html', {"mensagem": "Insucesso"})
+            return render(request, 'contacts.html', {"flag": False})
         else:
             mensagem = Mensagem.objects.create(nome=name, email=email, texto=text)
             mensagem.save()
 
 
             print(name, email, text)
-            return render(request, 'contacts.html', {"mensagem": "Sucesso"})
+            return render(request, 'contacts.html', {"mensagem": "Sucesso", "flag": True})
 
 
     return render(request, 'contacts.html')
