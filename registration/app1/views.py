@@ -188,6 +188,14 @@ def Settings(request):
 
 @login_required(login_url='login')
 def Profile(request):
+
+    user = request.user
+    registos_porta = Porta.objects.filter(utilizador=user).order_by('-id')
+
+    if len(registos_porta) != 0:
+        content = {"registos": registos_porta, "r": True}
+    else:
+        content = {"registos": registos_porta, "r": False}
     # Comando para executar o arquivo Python
     # Certifique-se de fornecer o caminho completo do arquivo se não estiver na mesma pasta da view.
     if request.method == 'POST':
@@ -216,25 +224,22 @@ def Profile(request):
                 porta.save()
                 abrirPorta()
                 print("Porta aberta com sucesso!")
-                return render(request, 'profile.html', {"mensagem": "Porta aberta com sucesso!", "flag": True})
+                content["mensagem"] = "Porta aberta com sucesso!"
+                content["flag"] = True
+                return render(request, 'profile.html', content)
             else:
+                content["mensagem"] = "Porta em cooldown!"
+                content["flag"] = False
                 print("Porta em cooldown!")
-                return render(request, 'profile.html', {"mensagem": "Porta em cooldown!", "flag": False})
+                return render(request, 'profile.html', content)
                 
         else:
+            content["mensagem"] = "Palavra-passe inválida!"
+            content["flag"] = False
             print("Palavra-passe inválida!")
-            return render(request, 'profile.html', {"mensagem": "Palavra-passe inválida!", "flag": False})
-    else:
-
-        user = request.user
-        registos_porta = Porta.objects.filter(utilizador=user).order_by('-id')
-
-        if len(registos_porta) != 0:
-            content = {"registos": registos_porta, "r": True}
-        else:
-            content = {"registos": registos_porta, "r": False}
-
-        return render(request, 'profile.html', content)
+            return render(request, 'profile.html', content)
+    
+    return render(request, 'profile.html', content)
 
 
 def Eletronica(request):
