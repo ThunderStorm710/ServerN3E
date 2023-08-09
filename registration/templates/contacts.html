@@ -21,6 +21,7 @@
   integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm"
   crossorigin="anonymous"
 />
+{% load static %}
 <style>
   * {
     margin: 0;
@@ -37,7 +38,7 @@
     background: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
   } 
   .imagem {
-    background: url(https://pardalmonteiro.com/wp-content/uploads/2018/07/ist_085.jpg);
+    background: url(/static/taguspark.jpg);
     background-size: cover; 
     position: relative;
     min-height: 100vh;
@@ -190,7 +191,7 @@
   <div class="imagem">
   <section class="contact">
     <div class="content">
-      <h2>Contactos</h2>
+      <h2><b>Contactos</b></h2>
     </div>
 
     <div class="container">
@@ -244,7 +245,7 @@
             <span>Mensagem</span>
           </div>
           <div class="inputBox">
-            <input type="submit" name="botão" value="Send" />
+            <input type="submit" name="botão" value="Enviar" />
             {% if flag %}
             <p style="color: green">Mensagem enviada com {{mensagem}}</p>
 

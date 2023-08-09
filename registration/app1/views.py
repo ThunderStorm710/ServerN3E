@@ -6,6 +6,15 @@ import subprocess
 from django.contrib.auth import update_session_auth_hash
 import datetime
 
+from django.conf import settings
+from django.templatetags.static import static
+
+# Caminho completo para a pasta de arquivos estáticos do aplicativo
+static_app_path = settings.STATIC_URL
+
+# Caminho completo para um arquivo estático específico usando o método `static()`
+static_file_path = static('nome_do_arquivo.extensao')
+
 
 def LandingPage(request):
     print(request.user.is_authenticated, "----")
