@@ -27,16 +27,28 @@
     padding: 0;
     box-sizing: border-box;
   }
-  .contact {
+  .imagem::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+  } 
+  .imagem {
+    background: url(https://pardalmonteiro.com/wp-content/uploads/2018/07/ist_085.jpg);
+    background-size: cover; 
     position: relative;
     min-height: 100vh;
+  }
+  .contact {
+    position: relative;
     padding: 50px 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: url(https://taguspark.pt/wp-content/uploads/TagusPark_home-scaled.jpg);
-    background-size: cover;
   }
   .contact .content {
     max-width: 800px;
@@ -175,6 +187,7 @@
 </style>
 <title>Contactos</title>
 <body>
+  <div class="imagem">
   <section class="contact">
     <div class="content">
       <h2>Contactos</h2>
@@ -240,7 +253,7 @@
         </form>
       </div>
     </div>
-  </section>
+  </section></div>
 </body>
 
 {% endblock %}
