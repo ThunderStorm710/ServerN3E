@@ -57,6 +57,7 @@
       a {
           color: #fff;
           text-decoration: none;
+          font-size: 16px;
       }
       /* Footer */
 
@@ -128,6 +129,17 @@
       .btn-icon {
           margin-left: 1rem;
       }
+      
+
+     
+    
+    @media (max-width: 768px) {
+        a {
+            font-size: 18px; /* Tamanho menor para telas menores que 768px de largura */
+        }
+    }
+
+          
 
 
   </style>
@@ -135,6 +147,10 @@
 
     <nav class="navbar navbar-expand-lg " style="background-color:black;">
       <a class="navbar-brand" href="/" style="color:#02b4cc;">N3E</a>   
+      <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         </ul>
