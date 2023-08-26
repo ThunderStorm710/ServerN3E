@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-d^(c$!rb7@w^iup=8qokk803ht0)*=)cmy2h9o26u5u(xri8*)
 DEBUG = True
 
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [".vercel.app", ".now.sh"]
 
 
 SITE_ID = 1
@@ -123,7 +123,8 @@ TEMPLATES = [
     },
 ]
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
+STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
 
 
 WSGI_APPLICATION = 'registration.wsgi.application'
